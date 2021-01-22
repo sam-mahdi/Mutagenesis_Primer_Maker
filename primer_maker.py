@@ -34,8 +34,12 @@ parser.add_argument('-mutations',help='A list of mutations. Ensure mutations are
 
 args = parser.parse_args()
 
+chromedriver_directory=(os.getcwd()+'/chromedriver')
 
-
+try:
+  os.system(f"chmod +x {chromedriver_directory}")
+except:
+  pass
 
 
 starting_residue_number=int(args.res_start)
@@ -258,7 +262,7 @@ def tm_calculator(mutation):
 
     options.add_argument('--proxy-bypass-list=*')
 
-    driver = webdriver.Chrome(executable_path=os.getcwd()+'/chromedriver',options=options)
+    driver = webdriver.Chrome(executable_path=chromedriver_directory,options=options)
 
     driver.get('https://tmcalculator.neb.com/#!/main')
 
