@@ -2,6 +2,7 @@
 Makes primers for mutagenesis work
 
 Has 3 inputs:
+
 ```-file```
 The DNA file of your protein (must not contain any tags, the first codon should be your first amino acid). 
 
