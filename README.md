@@ -4,8 +4,10 @@ Makes primers for mutagenesis work
 Has 3 inputs:
 ```-file```
 The DNA file of your protein (must not contain any tags, the first codon should be your first amino acid). 
+
 ```-res_start```
 The first starting residue number (i.e. if your construct of an individual domain 200-373, then your starting residue number is 200). 
+
 ```-mutations```
 Optional: A text file containing the desired mutations. One mutation per line 
 I.E.
