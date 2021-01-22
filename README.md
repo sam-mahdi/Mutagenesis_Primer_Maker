@@ -16,3 +16,12 @@ Example input
 ```
 python3 primer_maker.py -file gene_sequence.txt -res_start 1 -mutations mutation_list.txt
 ```
+The output for each mutation will be an indication which primer is being run, and a forward and reverse primer with the respective Tms. The mutation will always be aded to the forward primer. 
+
+Example output:
+```
+Primers for mutation R133A
+
+Forward Primer GCGCACAGCTTTAACGCACTGTTAAAAACC with Tm 72/67
+Reverse Primer CGACAGCATGTGCACTTCGTC with Tm 69
+```
