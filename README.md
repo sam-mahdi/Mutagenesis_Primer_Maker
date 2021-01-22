@@ -11,6 +11,7 @@ Optional: A text file containing the desired mutations. One mutation per line
 I.E.
 R133A
 F451T
+You may also type in -h for the above breakdown. 
 
 Example input
 ```
