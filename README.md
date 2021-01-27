@@ -20,12 +20,23 @@ Example input
 ```
 python3 primer_maker.py -file gene_sequence.txt -res_start 1 -mutations mutation_list.txt
 ```
-The output for each mutation will be an indication which primer is being run, and a forward and reverse primer with the respective Tms. The mutation will always be aded to the forward primer. 
+The output for each mutation will indicate which primer is being run, and a forward and reverse primer with the respective Tms. The program runs all 4 possible variations for the forward and reverse primers for the mutation (i.e. all 3 mutant bases on the forward primer, 2 mutant bases on the forward and 1 mutant base on the reverse, etc.). 
 
-Example output:
+Example output (GCG is the mutant bases for the Alanine):
 ```
 Primers for mutation R133A
-
 Forward Primer GCGCACAGCTTTAACGCACTGTTAAAAACC with Tm 72/67
 Reverse Primer CGACAGCATGTGCACTTCGTC with Tm 69
+
+
+Forward Primer CGCACAGCTTTAACGCACTGTTAAAAACCCTT with Tm 73/69
+Reverse Primer CCGACAGCATGTGCACTTCGTCG with Tm 73/71
+
+
+Forward Primer GCACAGCTTTAACGCACTGTTAAAAACCCTT with Tm 71/69
+Reverse Primer GCCGACAGCATGTGCACTTCGT with Tm 73/68
+
+
+Forward Primer CACAGCTTTAACGCACTGTTAAAAACCCTT with Tm 69/69
+Reverse Primer CGCCGACAGCATGTGCACTTC with Tm 72/64
 ```
