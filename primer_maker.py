@@ -292,7 +292,7 @@ def tm_calculator(mutation):
 
     print(f'\nPrimers for mutation {mutation}')
 
-    if tm_value1 <= 73 and (tm_value1-tm_value2) <= 12:
+    if tm_value1 <= 73 and (tm_value1-tm_value2) <= 10:
 
         print(f'Forward Primer {"".join(primer_for)} with Tm {tm_value1}/{tm_value2}')
 
@@ -385,6 +385,117 @@ def tm_calculator(mutation):
             tm_value2=int((''.join(list(tm_2.text.split()[-1])[0:2])))
 
         print(f'Reverse Primer {"".join(primer_rev_reverse)[0:count]} with Tm {tm_value1}')
+    primer_for=list(''.join(primer_for))
+    print('\n')
+    for i in range(3):
+        primer_rev_reverse.insert(0,DNA_complement_dict[primer_for[0]])
+        primer_for.pop(0)
+        fill_box = driver.find_element_by_xpath('//*[@id="p1"]')
+        fill_box.clear()
+
+        fill_box.send_keys(''.join(primer_for))
+
+        fill_box = driver.find_element_by_xpath('//*[@id="p2"]')
+
+        fill_box.clear()
+
+        fill_box.send_keys((''.join(primer_for)[(3-i-1):]))
+
+        tm_1=driver.find_element_by_xpath('//*[@id="tm1"]/div[2]/strong[3]')
+
+        tm_2=driver.find_element_by_xpath('//*[@id="tm2"]/div[2]/strong[3]')
+
+        tm_value1=int((''.join(list(tm_1.text.split()[-1])[0:2])))
+
+        tm_value2=int((''.join(list(tm_2.text.split()[-1])[0:2])))
+
+        if tm_value1 <= 73 and (tm_value1-tm_value2) <= 10:
+
+            print(f'Forward Primer {"".join(primer_for)} with Tm {tm_value1}/{tm_value2}')
+
+        else:
+
+            count=0
+
+            while tm_value1 >= 74:
+
+                count-=1
+
+                fill_box = driver.find_element_by_xpath('//*[@id="p1"]')
+
+                fill_box.clear()
+
+                fill_box.send_keys(''.join(primer_for)[0:count])
+
+                fill_box = driver.find_element_by_xpath('//*[@id="p2"]')
+
+                fill_box.clear()
+
+                fill_box.send_keys((''.join(primer_for)[(3-i-1):count]))
+
+                tm_1=driver.find_element_by_xpath('//*[@id="tm1"]/div[2]/strong[3]')
+
+                tm_2=driver.find_element_by_xpath('//*[@id="tm2"]/div[2]/strong[3]')
+
+                tm_value1=int((''.join(list(tm_1.text.split()[-1])[0:2])))
+
+                tm_value2=int((''.join(list(tm_2.text.split()[-1])[0:2])))
+            print(f'Forward Primer {"".join(primer_for)[0:count]} with Tm {tm_value1}/{tm_value2}')
+
+        fill_box = driver.find_element_by_xpath('//*[@id="p1"]')
+        fill_box.clear()
+
+        fill_box.send_keys(''.join(primer_rev_reverse))
+
+        fill_box = driver.find_element_by_xpath('//*[@id="p2"]')
+
+        fill_box.clear()
+
+        fill_box.send_keys((''.join(primer_rev_reverse)[(i+1):]))
+
+        tm_1=driver.find_element_by_xpath('//*[@id="tm1"]/div[2]/strong[3]')
+
+        tm_2=driver.find_element_by_xpath('//*[@id="tm2"]/div[2]/strong[3]')
+
+        tm_value1=int((''.join(list(tm_1.text.split()[-1])[0:2])))
+
+        tm_value2=int((''.join(list(tm_2.text.split()[-1])[0:2])))
+
+        if tm_value1 <= 73 and (tm_value1-tm_value2) <= 10:
+
+            print(f'Reverse Primer {"".join(primer_rev_reverse)} with Tm {tm_value1}/{tm_value2}')
+
+        else:
+
+            count=0
+
+            while tm_value1 >= 74:
+
+                count-=1
+
+                fill_box = driver.find_element_by_xpath('//*[@id="p1"]')
+
+                fill_box.clear()
+
+                fill_box.send_keys(''.join(primer_rev_reverse)[0:count])
+
+                fill_box = driver.find_element_by_xpath('//*[@id="p2"]')
+
+                fill_box.clear()
+
+                fill_box.send_keys((''.join(primer_rev_reverse)[(i+1):count]))
+
+                tm_1=driver.find_element_by_xpath('//*[@id="tm1"]/div[2]/strong[3]')
+
+                tm_2=driver.find_element_by_xpath('//*[@id="tm2"]/div[2]/strong[3]')
+
+                tm_value1=int((''.join(list(tm_1.text.split()[-1])[0:2])))
+
+                tm_value2=int((''.join(list(tm_2.text.split()[-1])[0:2])))
+            print(f'Reverse Primer {"".join(primer_rev_reverse)[0:count]} with Tm {tm_value1}/{tm_value2}')
+
+        print('\n')
+
 
 
 
@@ -395,7 +506,9 @@ def main_loop():
         with open(args.mutations,'rU') as mutation_file:
 
             for lines in mutation_file:
-
+                if re.search('^[A-Za-z]\d+[A-Za-z]',lines.strip()) is None:
+                    print(f'mutation {lines.strip()} improper format')
+                    continue
                 tm_calculator(lines)
 
     else:
@@ -403,6 +516,9 @@ def main_loop():
         while True:
 
             question=input('enter mutation: ')
+            if re.search('^[A-Za-z]\d+[A-Za-z]',question.strip()) is None:
+                print(f'entry {question} improper format, try again')
+                continue
 
             tm_calculator(question)
 
