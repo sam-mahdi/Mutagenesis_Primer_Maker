@@ -5,6 +5,7 @@ Has 3 inputs:
 
 ```-file```
 The DNA file of your protein (must not contain any tags, the first codon should be your first amino acid). 
+
 ```atgagtta```
 
 ```-res_start```
@@ -13,8 +14,10 @@ The first starting residue number (i.e. if your construct of an individual domai
 ```-mutations```
 Optional: A text file containing the desired mutations. One mutation per line 
 I.E.
+
 R133A
 F451T
+
 You may also type in -h for the above breakdown. 
 
 Example input
