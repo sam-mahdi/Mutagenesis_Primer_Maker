@@ -1,6 +1,8 @@
 # Mutagenesis_Primer_Maker
 Makes primers for mutagenesis work (***Internet Access is required***)
 
+Mutations must be in this format: Original Residue Residue Number Residue to mutate to. E.G. (```R133A```)
+
 Has 3 inputs:
 
 ```-file```
