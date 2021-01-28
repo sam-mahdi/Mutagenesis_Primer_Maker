@@ -1,5 +1,5 @@
 # Mutagenesis_Primer_Maker
-Makes primers for mutagenesis work (***Internet Access is required***
+Makes primers for mutagenesis work (***Internet Access is required***)
 
 Has 3 inputs:
 
